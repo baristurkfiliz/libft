@@ -16,7 +16,14 @@ SRCS = 		ft_memset.c		\
 		ft_isascii.c	\
 		ft_isdigit.c	\
 		ft_isprint.c	\
-		ft_atoi.c				
+		ft_atoi.c		\
+		ft_calloc.c		\
+		ft_substr.c		\
+		ft_strjoin.c	\
+		ft_strtrim.c	\
+		ft_toupper.c	\
+		ft_tolower.c	\
+		ft_strnstr.c	
 
 NAME = libft.a
 

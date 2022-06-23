@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/23 11:49:43 by bturkfil          #+#    #+#             */
+/*   Updated: 2022/06/23 11:49:44 by bturkfil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char *dest;
+	char	*dest;
 	size_t	dlen;
 
 	dlen = (ft_strlen(s) - start);
@@ -15,7 +27,7 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	{
 		s++;
 	}
-	dest = ft_memcpy(dest,s,dlen);
+	dest = ft_memcpy(dest, s, dlen);
 	dest[dlen + 1] = 0;
 	return (dest);
 }
