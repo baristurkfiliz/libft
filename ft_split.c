@@ -2,14 +2,6 @@
 #include <stdio.h>
 
 
-
-int	check_seperator(char s, char c)
-{
-	if (s == c)
-		return (1);
-	else
-		return (0);
-}
 int	counter(const char *str, char c)
 {
 	int i;
@@ -34,6 +26,7 @@ int	counter(const char *str, char c)
 	}
 	return (result + 1);
 }
+
 int	ftstrlen(const char *str, char c, int i)
 {
 	int result;
@@ -46,6 +39,7 @@ int	ftstrlen(const char *str, char c, int i)
 	}
 	return (result + 1);
 }
+
 char	*microsoft_word(const char *str, char c, int i)
 {
 	int	len;
@@ -73,34 +67,39 @@ char	**ft_split(const char *str, char c)
 
 	count = counter(str,c);
 	split = (char **) malloc(count * sizeof(char *));
+	if (!split)
+		return (0);
 	i = 0;
 	x = 0;
-	while (str[x])
+	while (str[x]) //---
 	{
-		while (check_seperator(str[x], c))
+		while (str[x] == c)
 			x++;
 		if (str[x])
 		{
 			split[i] = microsoft_word(str, c, x);
 			i++;
 		}
-		while (!check_seperator(str[x], c))
+		while (str[x] != c && str[x])
 			x++;			
 	}	
 	split[i] = 0;
 	return (split);
 }
+/*
+
+#include <stdio.h>
+
 int	main()
 {
-	char str[100] = "asd___asdasd_asd__asd___asd_";
+	char str[100] = "asd___asd__asdasdas__asd_asdasdsad__a";
 	char x = '_';
 	char **result;
 	int	i = 0;
 	result = ft_split(str,x);
 	while (result[i])
 	{
-		printf("split[%d] = %s",i,result[i]);
+		printf("split[%d] = %s\n",i,result[i]);
 		i++;
 	}
-}
-
+}*/
