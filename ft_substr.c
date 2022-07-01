@@ -6,7 +6,7 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:49:43 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/06/23 11:49:44 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:29:19 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*dest;
 	size_t	dlen;
+	char *str;
 
-	dlen = (ft_strlen(s) - start);
+	str = (char *)s;
+	dlen = (ft_strlen(str) - start);
 	if (len < dlen)
 		dlen = (len);
 	dest = (char *) malloc(dlen + 1);
 	if (!dest)
 		return (NULL);
-	while (start-- && *s)
+	while (start-- && *str)
 	{
-		s++;
+		str++;
 	}
 	dest = ft_memcpy(dest, s, dlen);
 	dest[dlen + 1] = 0;

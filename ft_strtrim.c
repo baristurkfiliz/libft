@@ -6,13 +6,13 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:46:07 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/06/23 12:00:50 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:48:31 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*trim1(const char *str, const char *set)
+char	*trim1(char const *str, char const *set)
 {
 	int		x;
 	int		dewamke;
@@ -38,7 +38,7 @@ char	*trim1(const char *str, const char *set)
 	return (s1);
 }
 
-char	*trim2(const char *str, const char *set)
+char	*trim2(char const *str, char const*set)
 {
 	char	*s1;
 	int		x;
@@ -67,7 +67,7 @@ char	*trim2(const char *str, const char *set)
 	return (s1);
 }
 
-char	*ft_strtrim(const char *s1, const char *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;
 	size_t	len;
