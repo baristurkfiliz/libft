@@ -6,7 +6,7 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:56:08 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/07/01 17:00:48 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:11:54 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_itoa(int n)
 	result[rlen + 1] = 0;
 	return (result);
 }
-
+/*
 #include <stdio.h>
 int main()
 {
@@ -69,4 +69,4 @@ int main()
     printf("\n");
     return (0);
 }
-
+*/

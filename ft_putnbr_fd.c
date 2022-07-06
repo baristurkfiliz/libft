@@ -6,7 +6,7 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:06:05 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/07/01 17:09:14 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:12:06 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -24,6 +24,7 @@ void	ft_putnbr_fd(int nbr, int fd)
 		i++;
 	}
 }
+/*
 #include <fcntl.h>
 int main()
 {
@@ -32,4 +33,4 @@ int main()
 	ft_putnbr_fd(nbr, fd);
 	return 0;
 }
-		
+*/		
