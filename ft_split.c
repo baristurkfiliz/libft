@@ -1,93 +1,108 @@
-#include <stdlib.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/07 06:15:05 by bturkfil          #+#    #+#             */
+/*   Updated: 2022/09/07 06:15:07 by bturkfil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 
-int	counter(const char *str, char c)
+#include "libft.h"
+
+static char			**ft_malloc_error(char **tab)
 {
-	int i;
-	int result;
+	unsigned int	i;
 
 	i = 0;
-	result = 0;
-	if (str[0] != c)
-		result = 1;
-	while (str[i])
+	while (tab[i])
 	{
-		if (str[i] == c)
-		{
-			while (str[i] == c)
-				i++;
-			if (str[i] != c && str[i])
-			{
-				result++;
-			}
-		}
+		free(tab[i]);
 		i++;
 	}
-	return (result + 1);
+	free(tab);
+	return (NULL);
 }
 
-int	ftstrlen(const char *str, char c, int i)
+static unsigned int	ft_get_nb_strs(char const *s, char c)
 {
-	int result;
+	unsigned int	i;
+	unsigned int	nb_strs;
 
-	result = 0;
-	while (str[i] != c)
-	{
-		result++;
-		i++;
-	}
-	return (result + 1);
-}
-
-char	*microsoft_word(const char *str, char c, int i)
-{
-	int	len;
-	char	*word;
-	int	x;
-
-	x = 0;
-	len = ftstrlen(str, c, i);
-	word = (char *) malloc(len);
-	while (str[i] != c)
-	{
-		word[x] = str[i];
-		i++;
-		x++;
-	}
-	word[x] = 0;
-	return (word);
-}
-char	**ft_split(const char *str, char c)
-{
-	int	count;
-	char	**split;
-	int	i;
-	int	x;
-
-	if (!str)
-		return (NULL);
-	count = counter(str,c);
-	split = (char **) malloc(count * sizeof(char *));
-	if (!split)
+	if (!s[0])
 		return (0);
 	i = 0;
-	x = 0;
-	while (str[x]) //---
+	nb_strs = 0;
+	while (s[i] && s[i] == c)
+		i++;
+	while (s[i])
 	{
-		while (str[x] == c)
-			x++;
-		if (str[x])
+		if (s[i] == c)
 		{
-			split[i] = microsoft_word(str, c, x);
-			i++;
+			nb_strs++;
+			while (s[i] && s[i] == c)
+				i++;
+			continue ;
 		}
-		while (str[x] != c && str[x])
-			x++;			
-	}	
-	split[i] = 0;
-	return (split);
+		i++;
+	}
+	if (s[i - 1] != c)
+		nb_strs++;
+	return (nb_strs);
 }
+
+static void			ft_get_next_str(char **next_str, unsigned int *next_str_len,
+					char c)
+{
+	unsigned int i;
+
+	*next_str += *next_str_len;
+	*next_str_len = 0;
+	i = 0;
+	while (**next_str && **next_str == c)
+		(*next_str)++;
+	while ((*next_str)[i])
+	{
+		if ((*next_str)[i] == c)
+			return ;
+		(*next_str_len)++;
+		i++;
+	}
+}
+
+char				**ft_split(char const *s, char c)
+{
+	char			**tab;
+	char			*next_str;
+	unsigned int	next_str_len;
+	unsigned int	nb_strs;
+	unsigned int	i;
+
+	if (!s)
+		return (NULL);
+	nb_strs = ft_get_nb_strs(s, c);
+	if (!(tab = (char **)malloc(sizeof(char *) * (nb_strs + 1))))
+		return (NULL);
+	i = 0;
+	next_str = (char *)s;
+	next_str_len = 0;
+	while (i < nb_strs)
+	{
+		ft_get_next_str(&next_str, &next_str_len, c);
+		if (!(tab[i] = (char *)malloc(sizeof(char) * (next_str_len + 1))))
+			return (ft_malloc_error(tab));
+		ft_strlcpy(tab[i], next_str, next_str_len + 1);
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
+}
+
+
+
 /*
 
 #include <stdio.h>
