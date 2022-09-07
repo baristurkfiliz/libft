@@ -6,7 +6,7 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 05:19:55 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/06/23 05:19:56 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/09/07 03:35:47 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ char	*ft_strdup(const char *src)
 	result = (char *)malloc(len);
 	if (!result)
 		return (NULL);
-	return ((char *)ft_memcpy(result, src, len));
+	return((char *)ft_memcpy(result, src, len));
 }

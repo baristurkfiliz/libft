@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 14:06:05 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/09/07 05:27:07 by bturkfil         ###   ########.fr       */
+/*   Created: 2022/09/07 05:50:52 by bturkfil          #+#    #+#             */
+/*   Updated: 2022/09/07 05:50:53 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	ft_putstr_fd(char *str, int fd)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int	i;
-
-	i = 0;
-	if (!str || !fd)
-		return;
-	while (str[i])
+	if (lst == NULL || f == NULL)
+		return ;
+	while (lst)
 	{
-		write(fd, &str[i], 1);
-		i++;
+		f(lst->content);
+		lst = lst->next;
 	}
 }
-/*
-#include <fcntl.h>
-int main()
-{
-	char	str[50] = "selam bro naber";
-	int fd =  open("x", O_RDWR);
-	ft_putstr_fd(str, fd);
-	return 0;
-}
-*/		

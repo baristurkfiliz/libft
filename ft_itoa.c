@@ -6,55 +6,54 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:56:08 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/07/01 17:11:54 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/09/07 04:53:38 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	__intlen(const int n)
+long int	ft_abs(long int nbr)
 {
-	int	result;
-	int	x;
-
-	result = 0;
-	x = n;
-	if (x < 0)
-		result++;
-	while (x)
-	{
-		result++;
-		x = x / 10;
-	}
-	return (result + 1);
+	return ((nbr < 0) ? -nbr : nbr);
 }
 
-char	*ft_itoa(int n)
+int			ft_len(long int nbr)
 {
-	int		x;
-	char	*result;
-	int		rlen;
-	int		i;
+	int		len;
 
-	x = n;
-	i = 0;
-	rlen = __intlen(x);
-	result = (char *) malloc (rlen * sizeof(char));
-	rlen = rlen - 1;
-	if (x < 0)
+	len = (nbr <= 0) ? 1 : 0;
+	while (nbr != 0)
 	{
-		result[i++] = '-';
-		x = x * -1;
+		nbr = nbr / 10;
+		len++;
 	}
-	i = (rlen - 1);
-	while (x > 0 || (i >= 0 && !result[i]))
-	{
-		result[i--] = ((x % 10) + 48);
-		x = x / 10;
-	}
-	result[rlen + 1] = 0;
-	return (result);
+	return (len);
 }
+
+char		*ft_itoa(int n)
+{
+	int		len;
+	int		sign;
+	char	*c;
+
+	sign = (n < 0) ? -1 : 1;
+	len = ft_len(n);
+	c = (char *)malloc(sizeof(char) * len + 1);
+	if (c == NULL)
+		return (0);
+	c[len] = '\0';
+	len--;
+	while (len >= 0)
+	{
+		c[len] = '0' + ft_abs(n % 10);
+		n = ft_abs(n / 10);
+		len--;
+	}
+	if (sign == -1)
+		c[0] = '-';
+	return (c);
+}
+
 /*
 #include <stdio.h>
 int main()

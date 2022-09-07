@@ -6,7 +6,7 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:53:03 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/07/05 16:19:57 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/09/07 05:51:54 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,9 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void		ft_lstclear(t_list **lst, void (*del)(void *));
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:49:43 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/07/01 13:29:19 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/09/07 03:45:36 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*dest;
 	size_t	dlen;
-	char *str;
+	char 	*str;
 
+	if (!s)
+		return (NULL);
 	str = (char *)s;
 	dlen = (ft_strlen(str) - start);
 	if (len < dlen)
@@ -26,19 +28,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!dest)
 		return (NULL);
 	while (start-- && *str)
-	{
 		str++;
-	}
-	dest = ft_memcpy(dest, s, dlen);
-	dest[dlen + 1] = 0;
+	dest = ft_memcpy(dest, str, dlen);
+	dest[dlen] = '\0';
 	return (dest);
 }
 /*
 #include <stdio.h>
-#include <string.h>
-int	main()
+int	main(int argc, char** argv)
 {
-	char x[30] = "selam bro naber";
-	char *y = ft_substr(x,1,100);
-	printf("x = %s\ny= %s\n",x,y);
-}*/
+	char *y = ft_substr(argv[1],ft_atoi(argv[2]),ft_atoi(argv[3]));
+	printf("x = %s\ny= %s\n",argv[1],y);
+}
+*/

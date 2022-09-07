@@ -6,7 +6,7 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 05:18:04 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/07/05 16:23:58 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/09/07 03:15:24 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	int	i;
 
-	if (!dst || !src)
+	if (!dst && !src)
 		return (NULL);
 	if (dst > src)
 	{

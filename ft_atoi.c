@@ -6,7 +6,7 @@
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 04:57:47 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/06/23 05:09:16 by bturkfil         ###   ########.fr       */
+/*   Updated: 2022/09/07 02:45:37 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,42 @@
 
 int	ft_atoi(const char *str)
 {
-	int	result;
-	int	is_neg;
+	unsigned long int	result;
+	int		is_neg;
+	int 	i;
+	int 	check;
 
-	result = 0;
-	while (*str == '\t' || *str == ' ' || *str == \
-			'\n' || *str == '\f' || *str == '\r')
-		str++;
+	check = 1;
 	is_neg = 1;
-	if (*str == '-')
-	{
+	i = 0;
+	result = 0;
+	while (str[i] && (str[i] == '\t' || str[i] == ' ' || str[i] == \
+		'\n' || str[i] == '\f' || str[i] == '\r' || str[i] == '\v'))
+		i++;
+	if (str[i] == '-' && str[i])
 		is_neg = -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
-	while (*str >= 48 && *str <= 57)
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] && check)
 	{
-		result *= 10;
-		result += (*str - 48);
-		str++;
+		if (result >= 214748364 && str[i] - '0' >= 8 && is_neg == 1)
+			return 1;
+		else if	(result >= 214748364 && str[i] - '0' >= 9  && is_neg == -1)
+			return -1;
+		else if (str[i] >= '0' && str[i] <= '9')
+			result = result * 10 + str[i] - '0';
+		else
+			check = 0;
+		i++;
 	}
 	return (result * is_neg);
 }
+/*
+#include <stdio.h>
+int	main(int argc, char* argv[])
+{
+	int	i = ft_atoi(argv[1]);
+	printf("%i", i);
+	return (0);
+}
+*/

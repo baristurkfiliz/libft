@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bturkfil <bturkfil@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 14:06:05 by bturkfil          #+#    #+#             */
-/*   Updated: 2022/09/07 05:27:07 by bturkfil         ###   ########.fr       */
+/*   Created: 2022/09/07 05:47:33 by bturkfil          #+#    #+#             */
+/*   Updated: 2022/09/07 05:47:35 by bturkfil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	ft_putstr_fd(char *str, int fd)
+t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	i;
+	t_list	*result;
+	t_list	*temp;
 
-	i = 0;
-	if (!str || !fd)
-		return;
-	while (str[i])
+	if (lst == NULL || f == NULL)
+		return (NULL);
+	result = NULL;
+	while (lst)
 	{
-		write(fd, &str[i], 1);
-		i++;
+		temp = ft_lstnew((*f)(lst->content));
+		if (!temp)
+		{
+			ft_lstclear(&result, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&result, temp);
+		temp = temp->next;
+		lst = lst->next;
 	}
+	return (result);
 }
-/*
-#include <fcntl.h>
-int main()
-{
-	char	str[50] = "selam bro naber";
-	int fd =  open("x", O_RDWR);
-	ft_putstr_fd(str, fd);
-	return 0;
-}
-*/		
